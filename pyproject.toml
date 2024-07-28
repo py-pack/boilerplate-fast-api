@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "newcarcas"
+version = "0.1.0"
+description = ""
+authors = ["PyPack <serg.karetnuk333@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.111.1"
+uvicorn = {extras = ["standart"], version = "^0.30.3"}
+pydantic = {extras = ["email"], version = "^2.8.2"}
+pydantic-settings = "^2.3.4"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
