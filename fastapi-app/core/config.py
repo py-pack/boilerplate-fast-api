@@ -18,10 +18,10 @@ class DatabaseConfig(BaseModel):
     database: str = ''
     user: str = ''
     password: str = ''
-    echo: bool = False,  # Виводити логи DB
-    echo_pool: bool = False,  # Виводити більш широкі логи
-    pool_size: int = 5,  # кількість відкрити з'єднань
-    max_overflow: int = 10,  # кількість підключень в пулі
+    echo: bool = False,
+    echo_pool: bool = False,
+    pool_size: int = 5,
+    max_overflow: int = 10,
 
     @property
     def url(self) -> PostgresDsn:
@@ -30,10 +30,11 @@ class DatabaseConfig(BaseModel):
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=(".env.template", ".env"),     # порядо підвантаження мержа змінинних
-        case_sensitive=False,                   # не важливий регістр
-        env_nested_delimiter="__",              # розділювач
-        env_prefix="APP_CONFIG__",              # префікс змінних, які будуть автоматично парситись
+        env_file=(".env.template", ".env"),  # порядо підвантаження мержа змінинних
+        case_sensitive=False,  # не важливий регістр
+        env_nested_delimiter="__",  # розділювач
+        env_prefix="APP__",  # префікс змінних, які будуть автоматично парситись
+        env_ignore_empty=True,
     )
     run: RunConfig = RunConfig()
     api: ApiPrefix = ApiPrefix()
@@ -41,3 +42,5 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+print(settings.db)
